@@ -22,20 +22,23 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.exception;
+package com.github.bfu4.sonare.abs.command;
 
-import java.util.logging.Logger;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * IllegalLoggerException - A logger that is blacklisted has been used.
+ * Permission - simple annotation to read permissions.
  *
- * @since 25/01/2021 @ 13.09
  * @author bfu4
+ * @since 02/01/2021 @ 23.41
  */
-public class IllegalLoggerException extends RuntimeException {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface Permission {
 
-   public IllegalLoggerException(Logger logger) {
-      super("The logger [" + logger.getName() + "] is not allowed to be used!");
-   }
+   String value();
 
 }

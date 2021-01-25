@@ -1,4 +1,4 @@
-package com.bfu4.sonare.reflection;
+package com.github.bfu4.sonare.reflection;
 
 /**
  * ClassLocator - Locate classes by name.

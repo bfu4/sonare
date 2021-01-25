@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.commands;
+package com.github.bfu4.sonare.commands;
 
 /**
  * SonareCommandPlugins -

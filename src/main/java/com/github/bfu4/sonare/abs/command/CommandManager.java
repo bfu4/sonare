@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.abs.command;
+package com.github.bfu4.sonare.abs.command;
 
-import com.bfu4.sonare.Sonare;
+import com.github.bfu4.sonare.Sonare;
 
 /**
  * CommandManager - simplified command manager

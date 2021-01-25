@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.bfu4</groupId>
+    <groupId>com.github.bfu4</groupId>
     <artifactId>sonare</artifactId>
     <name>sonare</name>
     <version>1.0</version>
@@ -43,7 +43,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.bfu4.sonare.Sonare</mainClass>
+                            <mainClass>com.github.bfu4.sonare.Sonare</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

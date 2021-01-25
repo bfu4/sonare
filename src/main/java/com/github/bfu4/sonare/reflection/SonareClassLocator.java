@@ -22,13 +22,40 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.commands;
+package com.github.bfu4.sonare.reflection;
+
+import com.google.common.reflect.ClassPath;
+
+import java.io.IOException;
 
 /**
- * SonareCommandEvents -
+ * SonareClassLocator -
  *
- * @since 25/01/2021 @ 14.15
+ * @since 25/01/2021 @ 13.42
  * @author bfu4
  */
-public class SonareCommandEvents {
+
+@SuppressWarnings("all")
+public class SonareClassLocator implements ClassLocator {
+
+   ClassPath parentPath;
+
+   public SonareClassLocator(Class<?> clazz) throws IOException {
+      parentPath = ClassPath.from(clazz.getClassLoader());
+   }
+
+   public String getPath() {
+      return parentPath.toString();
+   }
+
+   @Override
+   public Class<?> findClass(String name) {
+      return null;
+   }
+
+   @Override
+   public boolean validateClass(String className) {
+      return false;
+   }
+
 }

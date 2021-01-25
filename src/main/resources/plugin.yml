@@ -1,5 +1,5 @@
 name: sonare
-main: com.bfu4.sonare.Sonare
+main: com.github.bfu4.sonare.Sonare
 version: 1.0
 api-version: 1.13
 

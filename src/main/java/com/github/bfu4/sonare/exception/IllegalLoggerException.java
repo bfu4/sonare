@@ -22,40 +22,20 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.reflection;
+package com.github.bfu4.sonare.exception;
 
-import com.google.common.reflect.ClassPath;
-
-import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
- * SonareClassLocator -
+ * IllegalLoggerException - A logger that is blacklisted has been used.
  *
- * @since 25/01/2021 @ 13.42
+ * @since 25/01/2021 @ 13.09
  * @author bfu4
  */
+public class IllegalLoggerException extends RuntimeException {
 
-@SuppressWarnings("all")
-public class SonareClassLocator implements ClassLocator {
-
-   ClassPath parentPath;
-
-   public SonareClassLocator(Class<?> clazz) throws IOException {
-      parentPath = ClassPath.from(clazz.getClassLoader());
-   }
-
-   public String getPath() {
-      return parentPath.toString();
-   }
-
-   @Override
-   public Class<?> findClass(String name) {
-      return null;
-   }
-
-   @Override
-   public boolean validateClass(String className) {
-      return false;
+   public IllegalLoggerException(Logger logger) {
+      super("The logger [" + logger.getName() + "] is not allowed to be used!");
    }
 
 }

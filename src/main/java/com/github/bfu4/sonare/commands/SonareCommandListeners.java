@@ -22,57 +22,13 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.abs;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
+package com.github.bfu4.sonare.commands;
 
 /**
- * SonareUser -
+ * SonareCommandListeners -
  *
- * @since 25/01/2021 @ 14.02
+ * @since 25/01/2021 @ 14.15
  * @author bfu4
  */
-public class SonareUser implements ISonareUser {
-
-   private CommandSender sender;
-
-   public SonareUser(CommandSender sender) {
-      this.sender = sender;
-   }
-
-   @Override
-   public void sendMessage(String message) {
-      sender.sendMessage(translateMessage(message));
-   }
-
-   @Override
-   public boolean isOperator() {
-      return sender.isOp();
-   }
-
-   @Override
-   public boolean hasPermission(String permission) {
-      return sender.hasPermission(permission);
-   }
-
-   @Override
-   public String getName() {
-      return sender.getName();
-   }
-
-   @Override
-   public UUID getUUID() {
-      Player player = Bukkit.getPlayer(sender.getName());
-      return player != null ? player.getUniqueId() : null;
-   }
-
-   private String translateMessage(String message) {
-      return ChatColor.translateAlternateColorCodes('&', message);
-   }
-
+public class SonareCommandListeners {
 }

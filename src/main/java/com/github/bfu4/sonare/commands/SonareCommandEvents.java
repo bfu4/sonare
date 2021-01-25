@@ -22,23 +22,13 @@
  * SOFTWARE.
  */
 
-package com.bfu4.sonare.abs.command;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.github.bfu4.sonare.commands;
 
 /**
- * Permission - simple annotation to read permissions.
+ * SonareCommandEvents -
  *
+ * @since 25/01/2021 @ 14.15
  * @author bfu4
- * @since 02/01/2021 @ 23.41
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Permission {
-
-   String value();
-
+public class SonareCommandEvents {
 }
