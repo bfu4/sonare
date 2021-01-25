@@ -1,0 +1,21 @@
+name: sonare
+main: com.bfu4.sonare.Sonare
+version: 1.0
+api-version: 1.13
+
+commands:
+  sonare:
+    aliases:
+      - se
+    permission: sonare.operator.sonare
+
+permissions:
+  sonare.operator:
+    children:
+      sonare.operator.sonare: true
+      sonare.operator.sonare.info: true
+      sonare.operator.sonare.plugins: true
+      sonare.operator.sonare.listeners: true
+      sonare.operator.sonare.events: true
+      sonare.operator.sonare.execute: true
+    default: op
