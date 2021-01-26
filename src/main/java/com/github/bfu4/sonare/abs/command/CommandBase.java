@@ -25,7 +25,7 @@
 package com.github.bfu4.sonare.abs.command;
 
 import com.github.bfu4.sonare.Sonare;
-import com.github.bfu4.sonare.abs.SonareUser;
+import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -21,58 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package com.github.bfu4.sonare.reflection;
 
-package com.github.bfu4.sonare.abs;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.Arrays;
 
 /**
- * SonareUser -
+ * MethodTranslator - Utility class for turning method objects into human readable strings
  *
- * @since 25/01/2021 @ 14.02
+ * @since 25/01/2021 @ 20.18
  * @author bfu4
  */
-public class SonareUser implements ISonareUser {
+public final class MethodTranslator {
 
-   private CommandSender sender;
+    public static HumanReadableMethod getHumanReadableMethod(Method method) {
+        return new HumanReadableMethod(method);
+    }
 
-   public SonareUser(CommandSender sender) {
-      this.sender = sender;
-   }
+    public static Class<?> getReturnType(Method method) {
+        return method.getReturnType();
+    }
 
-   @Override
-   public void sendMessage(String message) {
-      sender.sendMessage(translateMessage(message));
-   }
+    public static String getHumanClassName(String className) {
+        String[] s = className.split(".");
+        return s[s.length - 1];
+    }
 
-   @Override
-   public boolean isOperator() {
-      return sender.isOp();
-   }
-
-   @Override
-   public boolean hasPermission(String permission) {
-      return sender.hasPermission(permission);
-   }
-
-   @Override
-   public String getName() {
-      return sender.getName();
-   }
-
-   @Override
-   public UUID getUUID() {
-      Player player = Bukkit.getPlayer(sender.getName());
-      return player != null ? player.getUniqueId() : null;
-   }
-
-   private String translateMessage(String message) {
-      return ChatColor.translateAlternateColorCodes('&', message);
-   }
+    public static String[] getSerializedHumanParameters(Parameter[] parameters) {
+        String[] arr = new String[parameters.length];
+        for (int i = 0; i < parameters.length; i ++) {
+            arr[i] = "{\"" + getHumanClassName(parameters[i].getClass().getName()) + "\""
+                    + ": \"" + parameters[i].getName() + "\"}";
+        }
+        return arr;
+    }
 
 }

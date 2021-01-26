@@ -21,41 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.github.bfu4.sonare.reflection;
 
-import com.google.common.reflect.ClassPath;
+public interface ClassInterpretable {
 
-import java.io.IOException;
-
-/**
- * SonareClassLocator -
- *
- * @since 25/01/2021 @ 13.42
- * @author bfu4
- */
-
-@SuppressWarnings("all")
-public class SonareClassLocator implements ClassLocator {
-
-   ClassPath parentPath;
-
-   public SonareClassLocator(Class<?> clazz) throws IOException {
-      parentPath = ClassPath.from(clazz.getClassLoader());
-   }
-
-   public String getPath() {
-      return parentPath.toString();
-   }
-
-   @Override
-   public Class<?> findClass(String name) {
-      return null;
-   }
-
-   @Override
-   public boolean validateClass(String className) {
-      return false;
-   }
+    String readableMethod(String methodName);
 
 }

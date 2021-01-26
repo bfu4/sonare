@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.bfu4.sonare.abs;
+package com.github.bfu4.sonare.abs.sonareobj;
 
 import com.github.bfu4.sonare.abs.command.CommandManager;
 import org.bukkit.plugin.java.JavaPlugin;

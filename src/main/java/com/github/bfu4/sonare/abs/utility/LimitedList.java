@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.bfu4.sonare.abs;
+package com.github.bfu4.sonare.abs.utility;
 import java.util.ArrayList;
 import java.util.Arrays;
 
