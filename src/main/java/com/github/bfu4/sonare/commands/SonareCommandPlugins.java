@@ -30,6 +30,7 @@ import com.github.bfu4.sonare.abs.command.Permission;
 import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import com.github.bfu4.sonare.commands.plugin.SonarePluginClassMethodDumpCommand;
 import org.bukkit.command.Command;
 
 /**
@@ -46,6 +47,8 @@ public class SonareCommandPlugins extends CommandBase {
 
    public SonareCommandPlugins(String commandIdentifier, Sonare plugin) {
       super(commandIdentifier, plugin);
+
+      addSubcommand("methods", new SonarePluginClassMethodDumpCommand("methods", plugin));
    }
 
    @Override
