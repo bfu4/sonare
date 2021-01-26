@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-package com.github.bfu4.sonare.commands;
+package com.github.bfu4.sonare.commands.plugin;
 
 /**
- * SonareTogglePluginCommand -
+ * SonarePluginClassDumpCommand -
  *
- * @since 25/01/2021 @ 21.59
+ * @since 25/01/2021 @ 22.17
  * @author bfu4
  */
-public class SonareTogglePluginCommand {
+public class SonarePluginClassDumpCommand {
 }
