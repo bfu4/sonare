@@ -145,7 +145,11 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
 
    @Override
    public List<String> onTabComplete(CommandSender sender, Command command, String identifier, String[] args) {
-      return tabArgs;
+      if (getSubcommands().containsKey(args[args.length - 1])) {
+         return getSubcommands().get(args[args.length - 1]).getTabArgs();
+      } else {
+         return tabArgs;
+      }
    }
 
    /**

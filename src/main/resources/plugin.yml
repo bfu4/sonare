@@ -19,3 +19,9 @@ permissions:
       sonare.operator.sonare.events: true
       sonare.operator.sonare.execute: true
     default: op
+  sonare.operator.plugins:
+    children:
+      sonare.operator.sonare.plugins.method: true
+      sonare.operator.sonare.plugins.class: true
+      sonare.operator.sonare.plugins.toggle: true
+    default: op

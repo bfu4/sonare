@@ -24,11 +24,55 @@
 
 package com.github.bfu4.sonare.commands.plugin;
 
+import com.github.bfu4.sonare.Sonare;
+import com.github.bfu4.sonare.abs.command.CommandBase;
+import com.github.bfu4.sonare.abs.command.Permission;
+import com.github.bfu4.sonare.abs.command.Subcommand;
+import com.github.bfu4.sonare.abs.command.Usage;
+import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.plugin.Plugin;
+
+import java.util.Arrays;
+
 /**
  * SonarePluginClassMethodDumpCommand -
  *
  * @since 25/01/2021 @ 22.17
  * @author bfu4
  */
-public class SonarePluginClassMethodDumpCommand {
+
+@Permission("sonare.operator.sonare.plugins.method")
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins dump <plugin> <class>")
+@Subcommand
+public class SonarePluginClassMethodDumpCommand extends CommandBase {
+
+   public SonarePluginClassMethodDumpCommand(String commandIdentifier, Sonare plugin) {
+      super(commandIdentifier, plugin);
+
+      Arrays.stream(Bukkit.getPluginManager().getPlugins()).forEach(bukkitPlugin -> {
+         addValidArgs(bukkitPlugin.getName());
+      });
+   }
+
+   @Override
+   public void execute(SonareUser user, Command command, String identifier, String[] args) {
+      if (args.length != 2) {
+         user.sendMessage(getUsage());
+      } else {
+         try {
+            Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
+            if (plugin != null) {
+               // todo better implementation for finding and feeding class names and filling in respective path c:
+               Class<?> clazz = Class.forName(args[1]);
+            } else {
+
+            }
+         } catch (ClassNotFoundException e) {
+
+         }
+      }
+   }
+
 }
