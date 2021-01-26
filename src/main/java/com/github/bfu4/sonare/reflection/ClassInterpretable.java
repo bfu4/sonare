@@ -25,6 +25,6 @@ package com.github.bfu4.sonare.reflection;
 
 public interface ClassInterpretable {
 
-    String readableMethod(String methodName);
+    HumanReadableMethod readableMethod(String methodName);
 
 }
