@@ -27,36 +27,30 @@ package com.github.bfu4.sonare.commands;
 import com.github.bfu4.sonare.Sonare;
 import com.github.bfu4.sonare.abs.command.CommandBase;
 import com.github.bfu4.sonare.abs.command.Permission;
+import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
 import org.bukkit.command.Command;
 
 /**
- * SonareCommand - Sonare's main command.
+ * SonareCommandHelp - display help information for <b>sonare</b>
  *
- * @since 25/01/2021 @ 13.55
+ * @since 25/01/2021 @ 22.09
  * @author bfu4
  */
 
 @Permission("sonare.operator.sonare")
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare <help|plugins|listeners|events|execute|toggle>")
-public class SonareCommand extends CommandBase {
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare help")
+@Subcommand
+public class SonareCommandHelp extends CommandBase {
 
-   public SonareCommand(String commandIdentifier, Sonare plugin) {
+   public SonareCommandHelp(String commandIdentifier, Sonare plugin) {
       super(commandIdentifier, plugin);
-
-      addSubcommand("help", new SonareCommandHelp("help", plugin));
    }
 
    @Override
    public void execute(SonareUser user, Command command, String identifier, String[] args) {
-      if (args.length == 0) {
-         user.sendMessage(getUsage());
-      } else {
-         if (getSubcommands().containsKey(args[0])) {
-            getSubcommands().get(args[0]).execute(user, command, identifier, args);
-         }
-      }
+
    }
 
 }

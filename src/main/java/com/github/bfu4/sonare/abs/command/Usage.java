@@ -21,42 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package com.github.bfu4.sonare.abs.command;
 
-package com.github.bfu4.sonare.commands;
-
-import com.github.bfu4.sonare.Sonare;
-import com.github.bfu4.sonare.abs.command.CommandBase;
-import com.github.bfu4.sonare.abs.command.Permission;
-import com.github.bfu4.sonare.abs.command.Usage;
-import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
-import org.bukkit.command.Command;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * SonareCommand - Sonare's main command.
+ * Usage - denotes command usage.
  *
- * @since 25/01/2021 @ 13.55
  * @author bfu4
+ * @since 25/01/2021 @ 22.01
  */
 
-@Permission("sonare.operator.sonare")
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare <help|plugins|listeners|events|execute|toggle>")
-public class SonareCommand extends CommandBase {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface Usage {
 
-   public SonareCommand(String commandIdentifier, Sonare plugin) {
-      super(commandIdentifier, plugin);
-
-      addSubcommand("help", new SonareCommandHelp("help", plugin));
-   }
-
-   @Override
-   public void execute(SonareUser user, Command command, String identifier, String[] args) {
-      if (args.length == 0) {
-         user.sendMessage(getUsage());
-      } else {
-         if (getSubcommands().containsKey(args[0])) {
-            getSubcommands().get(args[0]).execute(user, command, identifier, args);
-         }
-      }
-   }
+   String value();
 
 }

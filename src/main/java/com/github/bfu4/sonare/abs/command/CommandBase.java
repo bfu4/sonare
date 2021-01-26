@@ -33,6 +33,7 @@ import org.bukkit.command.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,7 +48,8 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    private final Sonare plugin;
    private final String identifier;
 
-   private final ArrayList<String> tabArgs = new ArrayList<>();
+   private final ArrayList<String> tabArgs;
+   private final HashMap<String, CommandBase> subcommands;
 
    /**
     * Create a new command
@@ -58,6 +60,8 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    public CommandBase(String commandIdentifier, Sonare plugin) {
       this.plugin = plugin;
       this.identifier = commandIdentifier;
+      this.tabArgs = new ArrayList<>();
+      this.subcommands = new HashMap<>();
    }
 
    /**
@@ -87,6 +91,17 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    public void addValidArgs(String ... args) { tabArgs.addAll(Arrays.asList(args)); }
 
    /**
+    * Add a subcommand
+    *
+    * @param subcommandName name of the subcommand
+    * @param subcommand instance of the subcommand
+    */
+   public void addSubcommand(String subcommandName, CommandBase subcommand) {
+      subcommands.put(subcommandName, subcommand);
+      tabArgs.add(subcommandName);
+   }
+
+   /**
     * Get the valid arguments
     *
     * @return tabbable arguments
@@ -104,12 +119,12 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    /**
     * Execute the command
     *
-    * @param sender sender invoking the command
+    * @param user user invoking the command
     * @param command the command object
     * @param identifier name of the command
     * @param args arguments passed
     */
-   public abstract void execute(CommandSender sender, Command command, String identifier, String[] args);
+   public abstract void execute(SonareUser user, Command command, String identifier, String[] args);
 
    @Override
    public boolean onCommand(CommandSender sender, Command command, String identifier, String[] args) {
@@ -121,7 +136,7 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
          newArgs = args;
       }
       if (user.hasPermission(getPermission())) {
-         execute(sender, command, identifier, newArgs);
+         execute(user, command, identifier, newArgs);
       } else {
          user.sendMessage(Sonare.COLORED_PREFIX + " &cInsufficient permission!");
       }
@@ -132,5 +147,23 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    public List<String> onTabComplete(CommandSender sender, Command command, String identifier, String[] args) {
       return tabArgs;
    }
+
+   /**
+    * Get the command usage
+    *
+    * @return usage
+    */
+   public String getUsage() {
+      Usage usageAnnotation = getClass().getAnnotation(Usage.class);
+      if (usageAnnotation != null) return usageAnnotation.value();
+      return "&cIncorrect command usage.";
+   }
+
+   /**
+    * Get the subcommands
+    *
+    * @return subcommands
+    */
+   public HashMap<String, CommandBase> getSubcommands() { return this.subcommands; }
 
 }
