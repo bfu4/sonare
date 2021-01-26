@@ -1,0 +1,33 @@
+# Extremely generic travis file we use just to verify that the build did indeed pass.
+
+os: linux
+language: java
+
+variables:
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2  -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -DskipTests=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true"
+
+# jdk
+jdk:
+  - openjdk8
+
+# This should only build on master. Development builds can fail
+branches:
+  only:
+    - master
+
+    # verify the build
+.verify: &verify
+  stage: test
+  script:
+    - 'mvn $MAVEN_CLI_OPTS verify'
+
+# Verify merge requests using JDK8
+verify:
+  <<: *verify
+
+# Let's make sure this compiles.
+build:
+  stage: build
+  script:
+    - mvn clean install
