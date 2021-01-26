@@ -129,14 +129,24 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    @Override
    public boolean onCommand(CommandSender sender, Command command, String identifier, String[] args) {
       SonareUser user = new SonareUser(sender);
-      String[] newArgs = new String[isSubcommand() ? args.length - 1 : args.length];
-      if (isSubcommand())  {
+      CommandBase next = getSubcommands().get(args[0].toLowerCase());
+      boolean nextIsSubcommand = next != null && next.isSubcommand();
+      String[] newArgs = new String[nextIsSubcommand ? args.length - 1 : args.length];
+      if (nextIsSubcommand)  {
          System.arraycopy(args, 1, newArgs, 0, args.length - 1);
       } else {
          newArgs = args;
       }
       if (user.hasPermission(getPermission())) {
-         execute(user, command, identifier, newArgs);
+         if (nextIsSubcommand) {
+            if (user.hasPermission(next.getPermission())) {
+               next.onCommand(sender, command, identifier, newArgs);
+            } else {
+               user.sendMessage(Sonare.COLORED_PREFIX + " &cInsufficient permission!");
+            }
+         } else {
+            execute(user, command, identifier, newArgs);
+         }
       } else {
          user.sendMessage(Sonare.COLORED_PREFIX + " &cInsufficient permission!");
       }

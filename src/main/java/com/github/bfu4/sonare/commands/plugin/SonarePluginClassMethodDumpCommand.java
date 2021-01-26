@@ -44,7 +44,7 @@ import java.util.Arrays;
  */
 
 @Permission("sonare.operator.sonare.plugins.method")
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins dump <plugin> <class>")
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins methods <plugin> <class>")
 @Subcommand
 public class SonarePluginClassMethodDumpCommand extends CommandBase {
 

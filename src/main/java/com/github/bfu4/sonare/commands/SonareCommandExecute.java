@@ -24,32 +24,11 @@
 
 package com.github.bfu4.sonare.commands;
 
-import com.github.bfu4.sonare.Sonare;
-import com.github.bfu4.sonare.abs.command.CommandBase;
-import com.github.bfu4.sonare.abs.command.Permission;
-import com.github.bfu4.sonare.abs.command.Subcommand;
-import com.github.bfu4.sonare.abs.command.Usage;
-import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
-import org.bukkit.command.Command;
-
 /**
- * SonareCommandPlugins -
+ * SonareCommandExecute -
  *
- * @since 25/01/2021 @ 14.14
+ * @since 25/01/2021 @ 22.45
  * @author bfu4
  */
-
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins <list|toggle|methods|class>")
-@Permission("sonare.operator.sonare.plugins")
-@Subcommand
-public class SonareCommandPlugins extends CommandBase {
-
-   public SonareCommandPlugins(String commandIdentifier, Sonare plugin) {
-      super(commandIdentifier, plugin);
-   }
-
-   @Override
-   public void execute(SonareUser user, Command command, String identifier, String[] args) {
-
-   }
+public class SonareCommandExecute {
 }
