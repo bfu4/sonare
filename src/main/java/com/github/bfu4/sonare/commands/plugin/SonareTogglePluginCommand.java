@@ -24,11 +24,43 @@
 
 package com.github.bfu4.sonare.commands.plugin;
 
+import com.github.bfu4.sonare.Sonare;
+import com.github.bfu4.sonare.abs.command.CommandBase;
+import com.github.bfu4.sonare.abs.command.Usage;
+import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.plugin.Plugin;
+
 /**
- * SonareTogglePluginCommand -
+ * SonareTogglePluginCommand - Toggle plugins.
  *
  * @since 25/01/2021 @ 21.59
  * @author bfu4
  */
-public class SonareTogglePluginCommand {
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins toggle <plugin>")
+public class SonareTogglePluginCommand extends CommandBase {
+
+   public SonareTogglePluginCommand(String commandIdentifier, Sonare plugin) {
+      super(commandIdentifier, plugin);
+   }
+
+   @Override
+   public void execute(SonareUser user, Command command, String identifier, String[] args) {
+      if (args.length != 1) {
+         user.sendMessage(getUsage());
+      } else {
+         Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
+         if (plugin != null && plugin != getPlugin()) {
+            if (plugin.isEnabled()) {
+               plugin.onDisable();
+            } else {
+               plugin.onEnable();
+            }
+         } else {
+            user.sendMessage(Sonare.COLORED_PREFIX + " &7Invalid plugin! See &9/pl &7or &9/sonare plugins list&7 for a list of plugins.");
+         }
+      }
+   }
+
 }
