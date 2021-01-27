@@ -34,7 +34,7 @@ import com.github.bfu4.sonare.Sonare;
  */
 public class CommandManager {
 
-   private Sonare plugin;
+   private final Sonare plugin;
 
    public CommandManager(Sonare plugin) {
       this.plugin = plugin;
