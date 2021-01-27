@@ -30,11 +30,14 @@ import com.github.bfu4.sonare.abs.command.Permission;
 import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import com.github.bfu4.sonare.reflection.HumanReadableMethod;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * SonarePluginClassMethodDumpCommand -
@@ -66,6 +69,9 @@ public class SonarePluginClassMethodDumpCommand extends CommandBase {
             if (plugin != null) {
                // todo better implementation for finding and feeding class names and filling in respective path c:
                Class<?> clazz = Class.forName(args[1]);
+               List<HumanReadableMethod> output = new ArrayList<>();
+               Arrays.stream(clazz.getMethods()).forEach(method -> output.add(new HumanReadableMethod(method)));
+               user.sendMessage(Sonare.COLORED_PREFIX + " &7Serialized Methods: &c" + output);
             } else {
 
             }
