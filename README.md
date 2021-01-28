@@ -1,4 +1,4 @@
-# sonare
+# sonare [![picture](./.github/FINALESONARE.png)]
 A multi-purpose Bukkit debugging plugin / framework. [![Build Status](https://travis-ci.com/bfu4/sonare.svg?token=bypWRsVUoMjidD3wJrUy&branch=master)](https://travis-ci.com/bfu4/sonare) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Why?
