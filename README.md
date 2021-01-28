@@ -1,5 +1,5 @@
 # sonare
-A multi-purpose Bukkit debugging plugin / framework. [![Build Status](https://travis-ci.com/bfu4/sonare.svg?token=bypWRsVUoMjidD3wJrUy&branch=master)](https://travis-ci.com/bfu4/sonare)
+A multi-purpose Bukkit debugging plugin / framework. [![Build Status](https://travis-ci.com/bfu4/sonare.svg?token=bypWRsVUoMjidD3wJrUy&branch=master)](https://travis-ci.com/bfu4/sonare) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Why?
 Ever try to override someone elses listeners? Events?
