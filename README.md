@@ -1,4 +1,7 @@
-# sonare <img src="https://github.com/bfu4/sonare/blob/devel/.github/FINALSONARE.png" height="160" width="320"/>
+<div align="center">
+	<img src="https://github.com/bfu4/sonare/blob/devel/.github/FINALSONARE.png" height="160" width="320"/>
+	<h1>sonare</h1>
+</div>
 A multi-purpose Bukkit debugging plugin / framework. [![Build Status](https://travis-ci.com/bfu4/sonare.svg?token=bypWRsVUoMjidD3wJrUy&branch=master)](https://travis-ci.com/bfu4/sonare) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Why?
