@@ -30,12 +30,12 @@ import com.github.bfu4.sonare.abs.command.Permission;
 import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import com.github.bfu4.sonare.commands.plugin.SonarePluginClassDumpCommand;
 import com.github.bfu4.sonare.commands.plugin.SonarePluginClassMethodDumpCommand;
 import com.github.bfu4.sonare.commands.plugin.SonareTogglePluginCommand;
-import org.bukkit.command.Command;
 
 /**
- * SonareCommandPlugins -
+ * SonareCommandPlugins - Subcommand for managing and viewing plugin <em>code</em> properties.
  *
  * @since 25/01/2021 @ 14.14
  * @author bfu4
@@ -49,12 +49,14 @@ public class SonareCommandPlugins extends CommandBase {
    public SonareCommandPlugins(String commandIdentifier, Sonare plugin) {
       super(commandIdentifier, plugin);
 
-      addSubcommand("methods", new SonarePluginClassMethodDumpCommand("methods", plugin));
-      addSubcommand("toggle", new SonareTogglePluginCommand("toggle", plugin));
+      addSubcommand("methods", new SonarePluginClassMethodDumpCommand(plugin));
+      addSubcommand("toggle", new SonareTogglePluginCommand(plugin));
+      addSubcommand("class", new SonarePluginClassDumpCommand(plugin));
    }
 
    @Override
-   public void execute(SonareUser user, Command command, String identifier, String[] args) {
+   public void execute(SonareUser user,  String[] args) {
 
    }
+
 }

@@ -24,4 +24,5 @@ permissions:
       sonare.operator.sonare.plugins.method: true
       sonare.operator.sonare.plugins.class: true
       sonare.operator.sonare.plugins.toggle: true
+      sonare.operator.sonare.plugins.packages: true
     default: op

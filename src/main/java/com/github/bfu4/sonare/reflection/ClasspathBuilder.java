@@ -22,42 +22,18 @@
  * SOFTWARE.
  */
 
-package com.github.bfu4.sonare.commands;
-
-import com.github.bfu4.sonare.Sonare;
-import com.github.bfu4.sonare.abs.command.CommandBase;
-import com.github.bfu4.sonare.abs.command.Permission;
-import com.github.bfu4.sonare.abs.command.Usage;
-import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
-import org.bukkit.command.Command;
+package com.github.bfu4.sonare.reflection;
 
 /**
- * SonareCommand - Sonare's main command.
+ * ClasspathBuilder - Build a classpath.
  *
- * @since 25/01/2021 @ 13.55
+ * @since 28/01/2021 @ 21.25
  * @author bfu4
  */
+public class ClasspathBuilder {
 
-@Permission("sonare.operator.sonare")
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare <help|plugins|listeners|events|execute|toggle>")
-public class SonareCommand extends CommandBase {
-
-   public SonareCommand(String commandIdentifier, Sonare plugin) {
-      super(commandIdentifier, plugin);
-
-      addSubcommand("help", new SonareCommandHelp("help", plugin));
-      addSubcommand("plugins", new SonareCommandPlugins("plugins", plugin));
+   public static String getClasspathOf(Object o) {
+      StringBuilder builder = new StringBuilder(o.getClass().getName().split(o.getClass().getSimpleName())[0]);
+      return builder.deleteCharAt(builder.length()).toString();
    }
-
-   @Override
-   public void execute(SonareUser user, String[] args) {
-      if (args.length == 0) {
-         user.sendMessage(getUsage());
-      } else {
-         if (getSubcommands().containsKey(args[0])) {
-            getSubcommands().get(args[0]).execute(user, args);
-         }
-      }
-   }
-
 }

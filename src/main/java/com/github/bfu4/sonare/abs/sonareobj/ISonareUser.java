@@ -1,5 +1,7 @@
 package com.github.bfu4.sonare.abs.sonareobj;
 
+import org.bukkit.Location;
+
 import java.util.UUID;
 
 /**
@@ -11,9 +13,11 @@ import java.util.UUID;
 public interface ISonareUser {
 
    void sendMessage(String message);
+   void sendFormattedMessage(String message);
    boolean isOperator();
    boolean hasPermission(String permission);
    String getName();
    UUID getUUID();
+   Location getLocation();
 
 }

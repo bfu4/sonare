@@ -120,11 +120,9 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
     * Execute the command
     *
     * @param user user invoking the command
-    * @param command the command object
-    * @param identifier name of the command
     * @param args arguments passed
     */
-   public abstract void execute(SonareUser user, Command command, String identifier, String[] args);
+   public abstract void execute(SonareUser user,  String[] args);
 
    @Override
    public boolean onCommand(CommandSender sender, Command command, String identifier, String[] args) {
@@ -142,13 +140,13 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
             if (user.hasPermission(next.getPermission())) {
                next.onCommand(sender, command, identifier, newArgs);
             } else {
-               user.sendMessage(Sonare.COLORED_PREFIX + " &cInsufficient permission!");
+               user.sendFormattedMessage("&cInsufficient permission!");
             }
          } else {
-            execute(user, command, identifier, newArgs);
+            execute(user, newArgs);
          }
       } else {
-         user.sendMessage(Sonare.COLORED_PREFIX + " &cInsufficient permission!");
+         user.sendFormattedMessage("&cInsufficient permission!");
       }
       return true;
    }

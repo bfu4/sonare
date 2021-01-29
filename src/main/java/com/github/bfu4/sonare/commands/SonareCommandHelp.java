@@ -30,7 +30,6 @@ import com.github.bfu4.sonare.abs.command.Permission;
 import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
-import org.bukkit.command.Command;
 
 /**
  * SonareCommandHelp - display help information for <b>sonare</b>
@@ -49,7 +48,7 @@ public class SonareCommandHelp extends CommandBase {
    }
 
    @Override
-   public void execute(SonareUser user, Command command, String identifier, String[] args) {
+   public void execute(SonareUser user,  String[] args) {
 
    }
 

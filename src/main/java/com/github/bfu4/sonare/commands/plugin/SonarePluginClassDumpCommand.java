@@ -24,11 +24,31 @@
 
 package com.github.bfu4.sonare.commands.plugin;
 
+import com.github.bfu4.sonare.Sonare;
+import com.github.bfu4.sonare.abs.command.CommandBase;
+import com.github.bfu4.sonare.abs.command.Permission;
+import com.github.bfu4.sonare.abs.command.Subcommand;
+import com.github.bfu4.sonare.abs.command.Usage;
+import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+
 /**
- * SonarePluginClassDumpCommand -
+ * SonarePluginClassDumpCommand - Dump the classes in a given package.
  *
  * @since 25/01/2021 @ 22.17
  * @author bfu4
  */
-public class SonarePluginClassDumpCommand {
+
+@Permission("sonare.operator.sonare.plugins.class")
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins class <plugin> <package>")
+@Subcommand
+public class SonarePluginClassDumpCommand extends CommandBase {
+
+   public SonarePluginClassDumpCommand(Sonare plugin) {
+      super("class", plugin);
+   }
+
+   @Override
+   public void execute(SonareUser user,  String[] args) {
+
+   }
 }

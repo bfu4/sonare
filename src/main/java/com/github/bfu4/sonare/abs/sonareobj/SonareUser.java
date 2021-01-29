@@ -24,8 +24,10 @@
 
 package com.github.bfu4.sonare.abs.sonareobj;
 
+import com.github.bfu4.sonare.Sonare;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -51,6 +53,11 @@ public class SonareUser implements ISonareUser {
    }
 
    @Override
+   public void sendFormattedMessage(String message) {
+      sendMessage(Sonare.COLORED_PREFIX + " " + message);
+   }
+
+   @Override
    public boolean isOperator() {
       return sender.isOp();
    }
@@ -70,6 +77,9 @@ public class SonareUser implements ISonareUser {
       Player player = Bukkit.getPlayer(sender.getName());
       return player != null ? player.getUniqueId() : null;
    }
+
+   @Override
+   public Location getLocation() { return sender instanceof Player ? ((Player) sender).getLocation() : null; }
 
    private String translateMessage(String message) {
       return ChatColor.translateAlternateColorCodes('&', message);

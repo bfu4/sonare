@@ -40,7 +40,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * SonarePluginClassMethodDumpCommand -
+ * SonarePluginClassMethodDumpCommand - Dump the methods in a given class.
  *
  * @since 25/01/2021 @ 22.17
  * @author bfu4
@@ -51,8 +51,8 @@ import java.util.List;
 @Subcommand
 public class SonarePluginClassMethodDumpCommand extends CommandBase {
 
-   public SonarePluginClassMethodDumpCommand(String commandIdentifier, Sonare plugin) {
-      super(commandIdentifier, plugin);
+   public SonarePluginClassMethodDumpCommand(Sonare plugin) {
+      super("methods", plugin);
 
       Arrays.stream(Bukkit.getPluginManager().getPlugins()).forEach(bukkitPlugin -> {
          addValidArgs(bukkitPlugin.getName());
@@ -60,7 +60,7 @@ public class SonarePluginClassMethodDumpCommand extends CommandBase {
    }
 
    @Override
-   public void execute(SonareUser user, Command command, String identifier, String[] args) {
+   public void execute(SonareUser user,  String[] args) {
       if (args.length != 2) {
          user.sendMessage(getUsage());
       } else {

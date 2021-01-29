@@ -26,36 +26,37 @@ package com.github.bfu4.sonare.commands.plugin;
 
 import com.github.bfu4.sonare.Sonare;
 import com.github.bfu4.sonare.abs.command.CommandBase;
+import com.github.bfu4.sonare.abs.command.Permission;
+import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import com.github.bfu4.sonare.reflection.ClasspathBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 /**
- * SonareTogglePluginCommand - Toggle plugins.
+ * SonarePluginPackageCommand - View plugin package names.
  *
- * @since 25/01/2021 @ 21.59
+ * @since 28/01/2021 @ 21.16
  * @author bfu4
  */
-@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins toggle <plugin>")
-public class SonareTogglePluginCommand extends CommandBase {
+@Permission("sonare.operator.sonare.plugins.packages")
+@Usage(Sonare.COLORED_PREFIX + " &fUsage: &7/sonare plugins packages <plugin>")
+@Subcommand
+public class SonarePluginPackageCommand extends CommandBase {
 
-   public SonareTogglePluginCommand(Sonare plugin) {
-      super("toggle", plugin);
+   public SonarePluginPackageCommand(Sonare plugin) {
+      super("package", plugin);
    }
 
    @Override
-   public void execute(SonareUser user,  String[] args) {
+   public void execute(SonareUser user, String[] args) {
       if (args.length != 1) {
-         user.sendMessage(getUsage());
+         user.sendFormattedMessage(getUsage());
       } else {
          Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
-         if (plugin != null && plugin != getPlugin()) {
-            if (plugin.isEnabled()) {
-               plugin.onDisable();
-            } else {
-               plugin.onEnable();
-            }
+         if (plugin != null) {
+            ClasspathBuilder.getClasspathOf(plugin);
          } else {
             user.sendFormattedMessage("&7Invalid plugin! See &9/pl &7or &9/sonare plugins list&7 for a list of plugins.");
          }
