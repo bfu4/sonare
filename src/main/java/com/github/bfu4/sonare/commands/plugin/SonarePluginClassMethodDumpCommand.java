@@ -38,6 +38,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * SonarePluginClassMethodDumpCommand - Dump the methods in a given class.
@@ -69,8 +70,12 @@ public class SonarePluginClassMethodDumpCommand extends CommandBase {
             if (plugin != null) {
                // todo better implementation for finding and feeding class names and filling in respective path c:
                Class<?> clazz = Class.forName(args[1]);
-               List<HumanReadableMethod> output = new ArrayList<>();
-               Arrays.stream(clazz.getMethods()).forEach(method -> output.add(new HumanReadableMethod(method)));
+               List<String> output = new ArrayList<>();
+               AtomicInteger colorDecider = new AtomicInteger(0);
+               Arrays.stream(clazz.getMethods()).forEach(method -> {
+                  output.add((colorDecider.intValue() % 2 == 0 ? "&7" : "&b") + (new HumanReadableMethod(method)).toString() + "&c");
+                  colorDecider.getAndIncrement();
+               });
                user.sendMessage(Sonare.COLORED_PREFIX + " &7Serialized Methods: &c" + output);
             } else {
                user.sendFormattedMessage(String.format("&cPlugin does &4%s &cnot exist!", args[0]));
