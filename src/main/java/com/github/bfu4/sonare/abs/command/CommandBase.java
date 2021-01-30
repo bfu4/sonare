@@ -161,7 +161,9 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
       CommandBase cmd = null;
       if (args.length > 0) {
          cmd =  getSubcommands().get(args[0]);
-      }// Cycle through the subcommands to get the tab args.
+      }
+      
+      // Cycle through the subcommands to get the tab args.
       if (args.length > 1) {
          for (int i = 1; i < args.length; i ++) {
             if (args[i].equals("\\s") || cmd == null) break;
