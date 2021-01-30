@@ -73,10 +73,10 @@ public class SonarePluginClassMethodDumpCommand extends CommandBase {
                Arrays.stream(clazz.getMethods()).forEach(method -> output.add(new HumanReadableMethod(method)));
                user.sendMessage(Sonare.COLORED_PREFIX + " &7Serialized Methods: &c" + output);
             } else {
-
+               user.sendFormattedMessage(String.format("&cPlugin does &4%s &cnot exist!", args[0]));
             }
          } catch (ClassNotFoundException e) {
-
+               user.sendFormattedMessage(String.format("&cClass &4%s &cdoes not exist!", args[1]));
          }
       }
    }

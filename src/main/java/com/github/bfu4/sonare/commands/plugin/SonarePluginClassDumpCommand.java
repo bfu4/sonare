@@ -51,4 +51,5 @@ public class SonarePluginClassDumpCommand extends CommandBase {
    public void execute(SonareUser user,  String[] args) {
 
    }
+
 }

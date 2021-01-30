@@ -44,7 +44,7 @@ public final class MethodTranslator {
     }
 
     public static String getHumanClassName(String className) {
-        String[] s = className.split(".");
+        String[] s = className.split("\\.");
         return s[s.length - 1];
     }
 
