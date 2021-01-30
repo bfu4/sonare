@@ -66,6 +66,4 @@ public class Sonare extends SonarePlugin {
       manager.register(new SonareCommand("sonare", this));
    }
 
-   public Logger getLogger() { return logger; }
-
 }

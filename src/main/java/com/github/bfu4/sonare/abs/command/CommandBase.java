@@ -30,6 +30,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,7 +128,10 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
    @Override
    public boolean onCommand(CommandSender sender, Command command, String identifier, String[] args) {
       SonareUser user = new SonareUser(sender);
-      CommandBase next = getSubcommands().get(args[0].toLowerCase());
+      CommandBase next = null;
+      if (args.length >= 1) {
+         next = getSubcommands().get(args[0].toLowerCase());
+      }
       boolean nextIsSubcommand = next != null && next.isSubcommand();
       String[] newArgs = new String[nextIsSubcommand ? args.length - 1 : args.length];
       if (nextIsSubcommand)  {
@@ -153,11 +157,22 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
 
    @Override
    public List<String> onTabComplete(CommandSender sender, Command command, String identifier, String[] args) {
-      if (getSubcommands().containsKey(args[args.length - 1])) {
-         return getSubcommands().get(args[args.length - 1]).getTabArgs();
-      } else {
-         return tabArgs;
+      List<String> tabbableArgs = new ArrayList<>();
+      CommandBase cmd = null;
+      if (args.length > 0) {
+         cmd =  getSubcommands().get(args[0]);
+      }// Cycle through the subcommands to get the tab args.
+      if (args.length > 1) {
+         for (int i = 1; i < args.length; i ++) {
+            if (args[i].equals("\\s") || cmd == null) break;
+            CommandBase next = cmd.getSubcommands().get(args[i]);
+            if (next == null) break;
+            cmd = next;
+         }
       }
+      return cmd != null
+         ? StringUtil.copyPartialMatches(args[args.length - 1], cmd.getTabArgs(), tabbableArgs)
+         : StringUtil.copyPartialMatches(args[args.length - 1], tabArgs, tabbableArgs);
    }
 
    /**
@@ -177,5 +192,6 @@ public abstract class CommandBase implements CommandExecutor, TabExecutor {
     * @return subcommands
     */
    public HashMap<String, CommandBase> getSubcommands() { return this.subcommands; }
+
 
 }
