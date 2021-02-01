@@ -50,7 +50,7 @@ public class SonareTogglePluginCommand extends CommandBase {
          user.sendMessage(getUsage());
       } else {
          Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
-         if (plugin != null && plugin != getPlugin()) {
+         if (plugin != null && plugin != getPlugin() && plugin != getPlugin()) {
             if (plugin.isEnabled()) {
                plugin.onDisable();
             } else {
