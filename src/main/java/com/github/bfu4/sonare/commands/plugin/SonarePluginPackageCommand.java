@@ -58,6 +58,7 @@ public class SonarePluginPackageCommand extends CommandBase {
          Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
          if (plugin != null) {
             ClassPath path = ClasspathBuilder.from(plugin);
+            // i know this get classes :(
             user.sendFormattedMessage(path != null ? "" + path.getAllClasses() : "Could not find any classes!");
          } else {
             user.sendFormattedMessage("&7Invalid plugin! See &9/pl &7or &9/sonare plugins list&7 for a list of plugins.");
