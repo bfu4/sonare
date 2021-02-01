@@ -30,6 +30,7 @@ import com.github.bfu4.sonare.abs.command.Permission;
 import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
+import com.github.bfu4.sonare.reflection.ClasspathBuilder;
 
 /**
  * SonarePluginClassDumpCommand - Dump the classes in a given package.
@@ -49,7 +50,11 @@ public class SonarePluginClassDumpCommand extends CommandBase {
 
    @Override
    public void execute(SonareUser user,  String[] args) {
-
+      if (args.length != 2) {
+         user.sendFormattedMessage(getUsage());
+      } else {
+         // todo
+      }
    }
 
 }

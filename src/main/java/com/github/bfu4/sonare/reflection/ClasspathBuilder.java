@@ -24,6 +24,11 @@
 
 package com.github.bfu4.sonare.reflection;
 
+import com.google.common.reflect.ClassPath;
+import org.bukkit.plugin.Plugin;
+
+import java.io.IOException;
+
 /**
  * ClasspathBuilder - Build a classpath.
  *
@@ -36,4 +41,14 @@ public class ClasspathBuilder {
       StringBuilder builder = new StringBuilder(o.getClass().getName().split(o.getClass().getSimpleName())[0]);
       return builder.deleteCharAt(builder.length()).toString();
    }
+
+   @SuppressWarnings("all")
+   public static ClassPath from(Plugin plugin) {
+      try {
+         return ClassPath.from(plugin.getClass().getClassLoader()) ;
+      } catch (IOException e) {
+         return null;
+      }
+   }
+
 }

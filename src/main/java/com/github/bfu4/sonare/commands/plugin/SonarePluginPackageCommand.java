@@ -31,6 +31,7 @@ import com.github.bfu4.sonare.abs.command.Subcommand;
 import com.github.bfu4.sonare.abs.command.Usage;
 import com.github.bfu4.sonare.abs.sonareobj.SonareUser;
 import com.github.bfu4.sonare.reflection.ClasspathBuilder;
+import com.google.common.reflect.ClassPath;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -56,7 +57,8 @@ public class SonarePluginPackageCommand extends CommandBase {
       } else {
          Plugin plugin = Bukkit.getPluginManager().getPlugin(args[0]);
          if (plugin != null) {
-            ClasspathBuilder.getClasspathOf(plugin);
+            ClassPath path = ClasspathBuilder.from(plugin);
+            user.sendFormattedMessage(path != null ? "" + path.getAllClasses() : "Could not find any classes!");
          } else {
             user.sendFormattedMessage("&7Invalid plugin! See &9/pl &7or &9/sonare plugins list&7 for a list of plugins.");
          }
